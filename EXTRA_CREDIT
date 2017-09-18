@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+
+public class Resistance {
+	List<Integer> sums = new ArrayList<>();
+
+	public static void main(String[] args) {
+		Resistance rstnc = new Resistance();
+		rstnc.input();
+	}
+
+	private void input() {
+		int [][] problem= {
+				{11, 10, 16, 24},
+				{13, 11, 12, 16},
+				{16, 16, 10, 18},
+				{41, 14, 28, 15}
+		};
+		for(int i = 0; i< 100; i++) {
+			aggressiveSolving(problem, 0, 0);
+
+		}
+		Collections.sort(sums);
+		System.out.println(sums.get(0));
+
+	}
+
+	private void aggressiveSolving(int[][] problem, int c, int r) {
+		int startingValue = problem[0][0];
+		int[] newNumber = {c, r};
+		int maxRow = problem.length-1;
+		int maxColumn = problem[0].length-1;
+		int targetNumber = problem[maxRow][maxColumn]; 
+		int q = problem[0][0];
+		List<Integer> list = new ArrayList<>(); 
+
+
+		list.add(startingValue);
+
+
+		while(q!=targetNumber){
+			int randomNum = 0;
+			while(randomNum==0) {
+				int[] remind = {0,0};
+				int four = -1;
+				int three = -1;
+				int two = 1;
+				int one =1;
+				Random rand = new Random();
+				int tryNumber = 1 + rand.nextInt((4 - 1) + 1);
+
+				if(tryNumber == 4 && 3 >= c+four && c+four >= 0   && newNumber[0] > -1 && problem[r+four][c] != problem[remind[0]][remind[1]]) {
+					randomNum = tryNumber;
+					newNumber[0] --;
+				}
+				if(tryNumber ==3 && 3 >=  c+three && c+three >= 0  && newNumber[1] > -1 &&  problem[r][c+three] != problem[remind[0]][remind[1]]) {
+					randomNum = tryNumber;
+					newNumber[1] --;
+				}
+				if(tryNumber == 2 && 3 >=  c+two && c+two >= 0 && newNumber[0] < 3  && problem[r+two][c] != problem[remind[0]][remind[1]]) {
+					randomNum = tryNumber;
+					newNumber[0] ++;
+				}
+				if(tryNumber ==1 && 3 >=  c+one && c+one >= 0 && newNumber[1] < 3  && problem[r][c+one] != problem[remind[0]][remind[1]]) {
+					randomNum = tryNumber;
+					newNumber[1] ++;
+				} 
+				remind[0] = c;
+				remind[1] = r;
+
+			}
+
+
+			System.out.println(Arrays.toString(newNumber));
+			q = problem[newNumber[0]][newNumber[1]];
+
+			
+			list.add(q);
+
+
+		}
+		int sum = 0;
+		for(int i = 0; i<list.size(); i++) {
+			sum += list.get(i);
+		}
+		System.out.println(sum);
+		sums.add(sum);
+	}
+}
