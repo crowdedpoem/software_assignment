@@ -1,0 +1,80 @@
+import java.math.*;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+
+public class Problem {
+
+	static int answer;
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Problem prb = new Problem();
+		prb.input();
+
+	}
+
+	public void input() {
+
+		String input = JOptionPane.showInputDialog("what is the coin value");
+		Scanner keyboard  = new Scanner(System.in);
+		double answer = Double.parseDouble(input);
+
+
+		solve(answer);
+
+	}
+
+
+
+
+	public void solve(double q) {
+
+		int a = (int) (q*100);
+		int y = a%5;
+
+		for (int i = 0; i < y; i++) {
+
+			a-= 1;
+		}
+
+		System.out.println("Number of pennies... " + y);
+		int t = (int) (a/25);
+		for (int o = 0; o<t; o++ ) {
+
+			a-= 25;
+		}
+
+		System.out.println("Numbers of quarters..." + t);
+
+		int u = (int) (a/10);
+		for( int p = 0; p<u; p++) {
+
+			a-=10;
+		}
+
+		System.out.println("Number of dimes is... " + u);
+
+
+
+		int s = (int) a/5;
+		for(int n = 0; n<s; n++) {
+
+			a-=5;
+		}
+
+
+		System.out.println("Number of nickels is..." + s);
+
+
+
+		JOptionPane.showMessageDialog(null, "Printing complete");
+
+
+	}
+
+}
+
+
