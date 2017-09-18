@@ -1,0 +1,506 @@
+import java.awt.List;
+import java.math.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class solving {
+	int o;
+	int p;
+	int l;
+	int i;
+	int token1;
+	int token2;
+	int token3;
+	int token4;
+	String input1;
+	String input2;
+	String input3;
+	String input4;
+
+	public static void main(String[] args) {
+		solving slv = new solving();
+		slv.input();
+	}
+
+	public void input() {
+
+
+
+
+
+
+
+		JTextField field1 = new JTextField();
+		JTextField field2 = new JTextField();
+		JTextField field3 = new JTextField();
+		JTextField field4 = new JTextField();
+		Object[] message = {
+				"What is total I have to reach?", field1,
+				"First Value:", field2,
+				"Second Value", field3,
+				"Third Value", field4,
+				"Last Input is 1 by default"
+		};
+		int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+		if (option == JOptionPane.OK_OPTION)
+		{
+			input1 = field1.getText();
+			input2 = field2.getText();
+			input3 = field3.getText();
+			input4 = field4.getText();
+
+
+
+		}
+		int total = Integer.valueOf(input1);
+		int value1 = Integer.valueOf(input2);
+		int value2 = Integer.valueOf(input3);
+		int value3 = Integer.valueOf(input4);
+		int value4 = 1;
+
+
+
+
+
+
+
+
+
+
+		Integer set[] = { value1, value2, value3, value4};
+		Arrays.sort(set, Collections.reverseOrder());
+		int high = set[0]; 
+		int sec = set[1];
+		int third = set[2];
+		int low = set[3];
+
+
+		testing1(total, high, sec, third, low);
+		testing2(total, high, sec, third, low);
+		testing3(total, high, sec, third, low);
+		testing4(total, high, sec, third, low);
+
+		Integer solving[] = {token1, token2, token3, token4};
+		Arrays.sort(solving);
+
+		if(solving[0] == token1) {
+			solve(total, high, sec, third, low);
+		}
+		if(solving[0] == token2) {
+			secondMethod(total, high, sec, third, low);
+		}
+		if (solving[0]== token3) {
+			thirdMethod(total, high, sec, third, low);
+		}
+		if (solving[0] == token4) {
+			fourthMethod(total, high, sec, third, low);
+		}
+	}
+
+
+
+
+	private void solve(int t, int high, int sec, int third, int low) {
+		int tokens = 0;
+		int total = t;
+
+		ArrayList<String> list = new ArrayList<String>();
+
+
+
+		if(total>=high) {
+
+			int i =total/high;
+			total -= (i*high);
+			tokens += i;
+			for(int v=0; v<i; v++) {
+				System.out.println("I used a... " + high);
+				list.add(Integer.toString(high));
+			}
+		}
+
+
+		if(total>= sec) {
+			int o = total/sec;
+			total -= (o*sec);
+			tokens += o;
+			for(int v=0; v<o; v++) {
+				System.out.println("I used a... " + sec);
+				list.add(Integer.toString(sec));
+			}
+		}
+
+		if(total>=third) {
+			int p = total/third;
+			total -= (p*third);
+			tokens += p;
+			for(int v=0; v<p; v++) {
+				System.out.println("I used a..." + third);
+				list.add(Integer.toString(third));
+			}
+		}
+
+		if(total>=low) {
+			int n = total/low;
+			total -= (n*low);
+			tokens += n;
+			for(int v=0; v<n; v++) {
+				System.out.println("I used a..." + low);
+				list.add(Integer.toString(low));
+			}
+		}
+
+
+
+
+		JOptionPane.showMessageDialog(null, "Total Number Of Coins: " + tokens,"Success!" , JOptionPane.INFORMATION_MESSAGE);
+
+
+
+		JOptionPane.showMessageDialog(null,"Here is a list of the Coins I used " + list);
+
+
+
+		System.out.println("Total number of coins: " + tokens);
+
+
+		token1 = tokens;
+
+
+
+	}
+
+
+
+
+	private void secondMethod(int t, int high, int sec, int third, int low) {
+
+		int tokens = 0;
+		int total = t;
+
+		ArrayList<String> list = new ArrayList<String>();
+
+		if(total>=sec) {
+			int o = total/sec;
+			total -= (o*sec);
+			tokens += o;
+
+			for(int v=0; v<o; v++) {
+				System.out.println("I used a... " + sec);
+				list.add(Integer.toString(sec));
+			}
+		}
+
+		if(total>=third) {
+			int p = total/third;
+			total -= (p*third);
+			tokens += p;
+
+			for(int v=0; v<p; v++) {
+				System.out.println("I used a... " + third);
+				list.add(Integer.toString(third));
+			}
+		}
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+			for(int v=0; v<l; v++) {
+				System.out.println("I used a..." + low);
+				list.add(Integer.toString(low));
+			}
+
+		}
+
+		System.out.println("Total number of coins: " + tokens);
+		JOptionPane.showMessageDialog(null, "Total Number Of Coins: " + tokens,"Success!" , JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null,"Here is a list of the Coins I used " + list);
+
+		token2 = tokens;
+	}
+
+
+	private void thirdMethod(int t, int high, int sec, int third, int low) {
+
+		int tokens = 0;
+		int total = t;
+
+
+
+		ArrayList<String> list = new ArrayList<String>();
+
+
+		if(total>=third) {
+			int p = total/third;
+			total -= (p*third);
+			tokens += p;
+
+			for(int v=0; v<p; v++) {
+				System.out.println("I used a... " + third);
+				list.add(Integer.toString(third));
+
+			}
+		}
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+
+			for(int v=0; v<l; v++) {
+				System.out.println("I used a... " + low);
+				list.add(Integer.toString(low));
+			}
+		}
+
+		System.out.println("Total number of coins: " + tokens);
+
+		JOptionPane.showMessageDialog(null, "Total Number Of Coins: " + tokens,"Success!" , JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null,"Here is a list of the Coins I used " + list);
+
+
+		token3 = tokens;
+
+
+	}
+
+
+	private void fourthMethod(int t, int high, int sec, int third, int low) {
+
+		int tokens = 0;
+		int total = t;
+
+
+		ArrayList<String> list = new ArrayList<String>();
+
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+
+			for(int v=0; v<l; v++) {
+				System.out.println("I used a... " + low);
+				list.add(Integer.toString(low));
+
+			}
+		}
+
+		System.out.println("Total number of coins: " + tokens);
+
+		JOptionPane.showMessageDialog(null, "Total Number Of Coins: " + tokens,"Success!" , JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null,"Here is a list of the Coins I used " + list);
+
+
+
+		token4 = tokens;
+
+	}
+
+
+
+
+
+
+
+	private void testing1(int t, int high, int sec, int third, int low) {
+		int tokens = 0;
+		int total = t;
+		if(total>=high) {
+
+			int i =total/high;
+			total -= (i*high);
+			tokens += i;
+
+		}
+
+
+		if(total>= sec) {
+			int o = total/sec;
+			total -= (o*sec);
+			tokens += o;
+
+		}
+
+		if(total>=third) {
+			int p = total/third;
+			total -= (p*third);
+			tokens += p;
+		}
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+
+
+
+
+		}
+
+
+
+
+
+
+
+		token1 = tokens;
+
+
+
+	}
+
+
+
+
+	private void testing2(int t, int high, int sec, int third, int low) {
+
+		int tokens = 0;
+		int total = t;
+
+		if(total>= sec) {
+			int o = total/sec;
+			total -= (o*sec);
+			tokens += o;
+
+
+
+
+		}
+
+		if(total>=third) {
+			int p = total/third;
+			total -= (p*third);
+			tokens += p;
+
+
+
+
+		}
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+
+
+
+
+
+		}
+
+
+		token2 = tokens;
+	}
+
+
+	private void testing3(int t, int high, int sec, int third, int low) {
+
+		int tokens = 0;
+		int total = t;
+
+
+
+
+
+
+		if(total>=third) {
+			int p = total/third;
+			total -= (p*third);
+			tokens += p;
+
+
+
+
+
+		}
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+
+
+
+
+
+		}
+
+
+
+
+
+		token3 = tokens;
+
+
+	}
+
+
+	private void testing4(int t, int high, int sec, int third, int low) {
+
+		int tokens = 0;
+		int total = t;
+
+
+
+
+
+		if(total>=low) {
+			int l = total/low;
+			total -= (l*low);
+			tokens += l;
+
+
+
+
+
+		}
+
+
+
+
+
+
+		token4 = tokens;
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
